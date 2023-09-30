@@ -13,8 +13,8 @@ import (
 	"golang.org/x/exp/slog"
 )
 
-// FluentBitHandlerOptionsContext can be used to retrieve the options used by the handler from the context.
-type FluentBitHandlerOptionsContext struct{}
+// fluentBitHandlerOptionsContext can be used to retrieve the options used by the handler from the context.
+type fluentBitHandlerOptionsContext struct{}
 
 // FluentBitHandlerOptions holds the options for the Fluent Bit handler.
 type FluentBitHandlerOptions struct {
@@ -41,13 +41,42 @@ type FluentBitHandlerOptions struct {
 
 	// RecordFormatter specifies the formatter to use to format the record before sending it to the HTTP listener.
 	//
-	// If no formatter is supplied, formatters.DefaultJSONFormatter is used to format the output.
+	// If no formatter is supplied, formatter.DefaultJSONFormatter is used to format the output.
 	RecordFormatter formatter.BufferFormatter
 
 	// URL is the URL of the Fluent Bit HTTP listener to post the message to.
 	//
 	// This is a required option.
 	URL string
+}
+
+// DefaultFluentBitHandlerOptions returns a default set of options for the handler.
+func DefaultFluentBitHandlerOptions() FluentBitHandlerOptions {
+	return FluentBitHandlerOptions{
+		ContentType:     "application/json",
+		HTTPClient:      resty.New(),
+		Level:           slog.LevelInfo,
+		RecordFormatter: formatter.DefaultJSONFormatter(),
+	}
+}
+
+// GetFluentBitHandlerOptionsFromContext retrieves the options from the context.
+//
+// If the options are not set in the context, a set of default options is returned instead.
+func GetFluentBitHandlerOptionsFromContext(ctx context.Context) *FluentBitHandlerOptions {
+	o := ctx.Value(fluentBitHandlerOptionsContext{})
+	if o != nil {
+		if opts, ok := o.(*FluentBitHandlerOptions); ok {
+			return opts
+		}
+	}
+	opts := DefaultFluentBitHandlerOptions()
+	return &opts
+}
+
+// AddToContext adds the options to the given context and returns the new context.
+func (o *FluentBitHandlerOptions) AddToContext(ctx context.Context) context.Context {
+	return context.WithValue(ctx, fluentBitHandlerOptionsContext{}, o)
 }
 
 // fluentBitHandler is a log handler that writes records to a Fluent Bit HTTP listener.
@@ -96,7 +125,7 @@ func (h fluentBitHandler) Enabled(ctx context.Context, level slog.Level) bool {
 // Any attributes duplicated between the handler and record, including within groups, are automaticlaly removed.
 // If a duplicate is encountered, the last value found will be used for the attribute's value.
 func (h *fluentBitHandler) Handle(ctx context.Context, r slog.Record) error {
-	handlerCtx := context.WithValue(ctx, FluentBitHandlerOptionsContext{}, &h.options)
+	handlerCtx := h.options.AddToContext(ctx)
 	if !h.options.EnableAsync {
 		return h.handle(handlerCtx, r)
 	}
