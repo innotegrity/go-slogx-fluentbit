@@ -4,13 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log/slog"
 
 	"github.com/go-resty/resty/v2"
 	"go.innotegrity.dev/async"
 	"go.innotegrity.dev/generic"
 	"go.innotegrity.dev/slogx"
 	"go.innotegrity.dev/slogx/formatter"
-	"golang.org/x/exp/slog"
 )
 
 // fluentBitHandlerOptionsContext can be used to retrieve the options used by the handler from the context.

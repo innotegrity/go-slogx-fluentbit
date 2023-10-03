@@ -15,10 +15,8 @@ go.innotegrity.dev/generic v0.1.1 h1:RHEA1Z1ZjCRfzdxxvTPdX2y+BKjGlHT4x6NreR/L+U4
 go.innotegrity.dev/generic v0.1.1/go.mod h1:SS2En0XONi0Mv0xKmXH/f2IwvQAl6g0Jw+rfeFhd1kM=
 go.innotegrity.dev/runtimex v0.1.0 h1:Yc8vMOVEaX7u3v/gupPkJtJigirjOtwgYvdYRsWF9lg=
 go.innotegrity.dev/runtimex v0.1.0/go.mod h1:c1h1unKRRYqzOfaR3Ru0EvALsm0x4eVymN3zQP1V6Yk=
-go.innotegrity.dev/slogx v0.1.0 h1:hrmYN6n4KWi/aQ6+QAugBk5J2y6aHas1ibXNhqM958U=
-go.innotegrity.dev/slogx v0.1.0/go.mod h1:kiaz7NRziJIQGpzLJ9mHqVdtCI2NKE89BG4MGjNO4zg=
-golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63 h1:m64FZMko/V45gv0bNmrNYoDEq8U5YUhetc9cBWKS1TQ=
-golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63/go.mod h1:0v4NqG35kSWCMzLaMeX+IQrlSnVE/bqGSyC2cz/9Le8=
+go.innotegrity.dev/slogx v0.3.1 h1:3BeXi9f4oXbKyoJy1uWAARpcepvjYLQaUx9kAnzUfRo=
+go.innotegrity.dev/slogx v0.3.1/go.mod h1:Q8p2CYKu1cwJKtM86KaeuYyRZfJKgCA5Qe0ViOGVels=
 golang.org/x/net v0.0.0-20211029224645-99673261e6eb h1:pirldcYWx7rx7kE5r+9WsOXPXK0+WH5+uZ7uPmJ44uM=
 golang.org/x/net v0.0.0-20211029224645-99673261e6eb/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=

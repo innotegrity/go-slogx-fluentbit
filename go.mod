@@ -1,14 +1,13 @@
 module go.innotegrity.dev/slogx-fluentbit
 
-go 1.18
+go 1.21
 
 require (
 	github.com/go-resty/resty/v2 v2.7.0
 	go.innotegrity.dev/async v0.1.1
 	go.innotegrity.dev/errorx v1.0.15
 	go.innotegrity.dev/generic v0.1.1
-	go.innotegrity.dev/slogx v0.1.0
-	golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63
+	go.innotegrity.dev/slogx v0.3.1
 )
 
 require (

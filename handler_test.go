@@ -5,13 +5,13 @@ package slogxfluentbit_test
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 	"testing"
 	"time"
 
 	"go.innotegrity.dev/errorx"
 	"go.innotegrity.dev/slogx"
 	slogxfluentbit "go.innotegrity.dev/slogx-fluentbit"
-	"golang.org/x/exp/slog"
 )
 
 func TestFluentBit1(t *testing.T) {
